@@ -1,0 +1,37 @@
+{
+  "name": "astro-desktop",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "build/index.js",
+  "description": "A useful tool for streamers and power users.",
+  "keywords": [
+    "vite",
+    "react",
+    "electron",
+    "typescript",
+    "streaming"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "yarn build:electron && electron .",
+    "build:vite": "tsc && vite build",
+    "build:electron": "tsc -p electron"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@vitejs/plugin-react": "^1.0.7",
+    "concurrently": "^7.0.0",
+    "electron": "^17.1.2",
+    "git-commit-msg-linter": "^4.1.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0"
+  }
+}
