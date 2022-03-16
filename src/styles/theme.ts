@@ -3,7 +3,8 @@ export const theme = {
     background: '#121214',
     primary: '#242629',
     secondary: '#757575',
-    text: '#FFF'
+    text: '#E1E1E6',
+    atention: '#E96379'
   },
   fonts: {
     regular: 'Inter Regular',
