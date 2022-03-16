@@ -1,19 +1,23 @@
-import { BrowserWindow, app, ipcMain } from 'electron'
+import { BrowserWindow, app, ipcMain, nativeImage } from 'electron'
 import isDev from 'electron-is-dev'
 import { join } from 'path'
 
 function createWindow() {
+  const icon = nativeImage.createFromPath(
+    `${app.getAppPath()}/.github/icon.png`
+  )
+
   const window = new BrowserWindow({
     minWidth: 900,
     minHeight: 600,
     frame: false,
-    show: true,
     resizable: true,
     fullscreenable: true,
     transparent: true,
     webPreferences: {
       preload: join(__dirname, 'preload.js')
-    }
+    },
+    icon: icon
   })
 
   const url = isDev
