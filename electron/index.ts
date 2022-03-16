@@ -27,11 +27,11 @@ function createWindow() {
   }
 
   ipcMain.on('minimize', () => {
-    window.isMinimized() ? window.restore() : window.minimize()
+    window.minimize()
   })
 
   ipcMain.on('maximize', () => {
-    window.isMaximized() ? window.restore() : window.maximize()
+    window.isMaximized() ? window.unmaximize() : window.maximize()
   })
 
   ipcMain.on('close', () => {
