@@ -1,14 +1,15 @@
-import logo from './logo.svg'
-import './App.css'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './styles/styles'
+import { theme } from './styles/theme'
+
+import { Header } from './components/Header'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Astro</p>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
+    </ThemeProvider>
   )
 }
 

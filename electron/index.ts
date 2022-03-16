@@ -11,12 +11,13 @@ function createWindow() {
     frame: false,
     show: true,
     resizable: true,
-    fullscreenable: true
+    fullscreenable: true,
+    transparent: true
   })
 
   const url = isDev
     ? `http://localhost:3000`
-    : join(__dirname, '../src/out/index.html')
+    : join(__dirname, '../build/index.html')
 
   // and load the index.html of the app.
   if (isDev) {
