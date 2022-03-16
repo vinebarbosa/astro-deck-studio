@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
+import { darken } from 'polished'
 
 export const Container = styled.header`
   width: 100%;
-  height: 40px;
+  height: 20px;
   position: relative;
 
   user-select: none;
@@ -51,7 +52,11 @@ export const WindowActions = styled.div<WindowActionsProps>`
     `}
 `
 
-export const ActionButton = styled.button`
+interface ActionButtonProps {
+  action?: 'normal' | 'close'
+}
+
+export const ActionButton = styled.button<ActionButtonProps>`
   background: transparent;
   -webkit-app-region: no-drag;
   border: 0;
@@ -61,6 +66,18 @@ export const ActionButton = styled.button`
   align-items: center;
   justify-content: center;
   color: ${(props) => props.theme.colors.secondary};
+  cursor: default;
+
+  &:hover {
+    background-color: ${({ theme }) => darken(0.2, theme.colors.secondary)};
+
+    ${({ theme, action }) =>
+      action === 'close' &&
+      css`
+        background-color: ${darken(0.05, theme.colors.atention)};
+      `}
+    transition: 200ms background-color;
+  }
 
   &:hover svg {
     color: ${(props) => props.theme.colors.text};

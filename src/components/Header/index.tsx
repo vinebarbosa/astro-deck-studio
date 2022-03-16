@@ -23,9 +23,9 @@ export const Header: React.FC = () => {
           <FiMinus size={18} />
         </ActionButton>
         <ActionButton onClick={handleMaximize}>
-          <FiSquare size={16} />
+          <FiSquare size={14} />
         </ActionButton>
-        <ActionButton onClick={handleClose}>
+        <ActionButton action="close" onClick={handleClose}>
           <FiX size={18} />
         </ActionButton>
       </WindowActions>
