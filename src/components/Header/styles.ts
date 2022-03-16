@@ -5,6 +5,7 @@ export const Container = styled.header`
   height: 40px;
   position: relative;
 
+  user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: drag;
 

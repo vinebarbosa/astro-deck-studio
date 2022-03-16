@@ -1,8 +1,6 @@
-// Native
-import { join } from 'path'
-
-import { BrowserWindow, app } from 'electron'
+import { BrowserWindow, app, ipcMain } from 'electron'
 import isDev from 'electron-is-dev'
+import { join } from 'path'
 
 function createWindow() {
   const window = new BrowserWindow({
@@ -12,23 +10,39 @@ function createWindow() {
     show: true,
     resizable: true,
     fullscreenable: true,
-    transparent: true
+    transparent: true,
+    webPreferences: {
+      preload: join(__dirname, 'preload.js')
+    }
   })
 
   const url = isDev
     ? `http://localhost:3000`
     : join(__dirname, '../build/index.html')
 
-  // and load the index.html of the app.
   if (isDev) {
     window?.loadURL(url)
   } else {
     window?.loadFile(url)
   }
-  // Open the DevTools.
-  // window.webContents.openDevTools();
+
+  ipcMain.on('minimize', () => {
+    window.isMinimized() ? window.restore() : window.minimize()
+  })
+
+  ipcMain.on('maximize', () => {
+    window.isMaximized() ? window.restore() : window.maximize()
+  })
+
+  ipcMain.on('close', () => {
+    window.close()
+  })
 }
 
-app.whenReady().then(() => {
+app.on('ready', () => {
   createWindow()
+})
+
+app.on('window-all-closed', () => {
+  app.quit()
 })
