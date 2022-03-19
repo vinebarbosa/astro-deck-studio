@@ -4,22 +4,22 @@ import { theme } from './theme'
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: ${theme.fonts.regular};
-    src: url('../assets/fonts/Inter-Regular.ttf');
+    src: url('/fonts/Inter-Regular.ttf');
   }
 
   @font-face {
     font-family: ${theme.fonts.medium};
-    src: url('../assets/fonts/Inter-Medium.ttf');
+    src: url('/fonts/Inter-Medium.ttf');
   }
 
   @font-face {
     font-family: ${theme.fonts.semibold};
-    src: url('../assets/fonts/Inter-SemiBold.ttf');
+    src: url('/fonts/Inter-SemiBold.ttf');
   }
 
   @font-face {
     font-family: ${theme.fonts.bold};
-    src: url('../assets/fonts/Inter-Bold.ttf');
+    src: url('/fonts/Inter-Bold.ttf');
   }
 
   * {

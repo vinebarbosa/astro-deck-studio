@@ -4,7 +4,7 @@ export const theme = {
     primary: '#242629',
     secondary: '#757575',
     text: '#E1E1E6',
-    atention: '#E96379'
+    atention: '#E74C3C'
   },
   fonts: {
     regular: 'Inter Regular',
