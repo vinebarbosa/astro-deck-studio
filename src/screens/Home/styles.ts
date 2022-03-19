@@ -12,6 +12,8 @@ export const SideBar = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   height: 100%;
   width: 250px;
+  padding-left: 10px;
+  padding-right: 10px;
 `
 
 export const Title = styled.h1`
@@ -20,6 +22,7 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.text};
   text-align: center;
   padding: 16px 0;
+  user-select: none;
 `
 
 export const PadsArea = styled.div`
