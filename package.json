@@ -22,7 +22,8 @@
     "build:vite": "tsc && vite build",
     "build:electron": "tsc -p electron",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "yarn build:vite && yarn build:electron && yarn electron-builder",
+    "clean": "rimraf dist build"
   },
   "build": {
     "productName": "Astro",
