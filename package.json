@@ -1,6 +1,9 @@
 {
   "name": "astro-desktop",
   "version": "1.0.0",
+  "author": {
+    "name": "Vinícios Barbosa"
+  },
   "license": "MIT",
   "main": "build/index.js",
   "description": "A useful tool for streamers and power users.",
@@ -15,8 +18,25 @@
     "dev": "concurrently \"yarn dev:vite\" \" yarn dev:electron\"",
     "dev:vite": "vite",
     "dev:electron": "yarn build:electron && electron .",
+    "build": "yarn build:vite && yarn build:electron",
     "build:vite": "tsc && vite build",
-    "build:electron": "tsc -p electron"
+    "build:electron": "tsc -p electron",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "productName": "Astro",
+    "asar": true,
+    "win": {
+      "target": "portable",
+      "icon": "./.github/icon.png"
+    },
+    "files": [
+      "build"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    }
   },
   "dependencies": {
     "electron-is-dev": "^2.0.0",
@@ -36,6 +56,7 @@
     "@vitejs/plugin-react": "^1.0.7",
     "concurrently": "^7.0.0",
     "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",

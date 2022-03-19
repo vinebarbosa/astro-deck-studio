@@ -1,28 +1,51 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { join, resolve } from 'path'
+import { UserConfig, ConfigEnv } from 'vite'
+import { resolve } from 'path'
 
-const srcRoot = join(__dirname, 'src')
-// https://vitejs.dev/config/
-export default defineConfig({
-  root: srcRoot,
-  publicDir: resolve(__dirname, 'src', 'assets'),
-  base: '/',
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '/@': srcRoot
+const srcRoot = resolve(__dirname, 'src')
+
+export default ({ command }: ConfigEnv): UserConfig => {
+  // DEV
+  if (command === 'serve') {
+    return {
+      root: srcRoot,
+      publicDir: 'assets',
+      base: '/',
+      plugins: [react()],
+      resolve: {
+        alias: {
+          '/@': srcRoot
+        }
+      },
+      server: {
+        port: process.env.PORT === undefined ? 3000 : +process.env.PORT
+      },
+      optimizeDeps: {
+        exclude: ['path']
+      }
     }
-  },
-  build: {
-    outDir: join('..', 'build'),
-    emptyOutDir: false,
-    rollupOptions: {}
-  },
-  server: {
-    port: process.env.PORT === undefined ? 3000 : +process.env.PORT
-  },
-  optimizeDeps: {
-    exclude: ['path']
   }
-})
+  // PROD
+  return {
+    root: srcRoot,
+    base: resolve(__dirname, 'build'),
+    publicDir: resolve(__dirname, 'src', 'assets'),
+    plugins: [react()],
+    resolve: {
+      alias: {
+        '/@': srcRoot
+      }
+    },
+    build: {
+      outDir: resolve(__dirname, 'build'),
+      emptyOutDir: true,
+      rollupOptions: {}
+    },
+    server: {
+      port: process.env.PORT === undefined ? 3000 : +process.env.PORT
+    },
+    optimizeDeps: {
+      exclude: ['path']
+    }
+  }
+}
