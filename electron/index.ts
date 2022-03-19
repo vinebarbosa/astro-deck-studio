@@ -26,6 +26,7 @@ function createWindow() {
 
   if (isDev) {
     window?.loadURL(url)
+    window?.webContents.openDevTools()
   } else {
     window?.loadFile(url)
   }
