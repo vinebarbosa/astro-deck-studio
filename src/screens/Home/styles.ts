@@ -14,7 +14,11 @@ export const SideBar = styled.div`
   width: 270px;
   padding-left: 10px;
   padding-right: 10px;
-  overflow: hidden;
+  padding-bottom: 200px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const Title = styled.h1`
