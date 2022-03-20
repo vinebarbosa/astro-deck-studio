@@ -34,8 +34,10 @@ export const Icon = styled(icon).attrs(({ path }: IconProps) => {
 })`
   height: 24px;
   width: 24px;
-  margin-left: 6px;
-  margin-right: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
+  user-select: none;
+  pointer-events: none;
 `
 
 interface LabelProps {
@@ -52,4 +54,5 @@ export const Label = styled(label).attrs(({ text }: LabelProps) => {
   font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors.text};
   font-size: 16px;
+  user-select: none;
 `

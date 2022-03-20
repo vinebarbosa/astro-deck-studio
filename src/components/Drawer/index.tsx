@@ -6,11 +6,12 @@ import { data } from './drawerData'
 const Drawer: React.FC = () => {
   return (
     <Container>
-      {data.map((actionGroup) => (
+      {data.map((actionGroup, index) => (
         <ActionsGroup
-          key={actionGroup.key}
+          key={index}
           iconPath={actionGroup.path}
           label={actionGroup.slug}
+          actions={actionGroup.actions}
         />
       ))}
     </Container>
