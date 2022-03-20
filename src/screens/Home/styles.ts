@@ -11,9 +11,10 @@ export const Container = styled.div`
 export const SideBar = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   height: 100%;
-  width: 250px;
+  width: 270px;
   padding-left: 10px;
   padding-right: 10px;
+  overflow: hidden;
 `
 
 export const Title = styled.h1`
