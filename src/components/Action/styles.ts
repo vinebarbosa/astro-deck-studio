@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  padding: 10px 35px;
+  padding: 10px 40px;
   align-items: center;
   border-radius: 5px;
 
@@ -15,7 +15,7 @@ export const Container = styled.div`
 
   img {
     height: 24px;
-    width: 24px;
+    min-width: 24px;
     margin-right: 10px;
     -webkit-app-region: no-drag;
     pointer-events: none;
