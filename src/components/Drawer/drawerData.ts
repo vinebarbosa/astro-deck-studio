@@ -11,12 +11,14 @@ import micMutedImagePath from '/img/mic-muted.png'
 import obsStudioImagePath from '/img/obs.png'
 import moonImagePath from '/img/lua.png'
 import folderImagePath from '/img/folder.png'
+import sceneImagePath from '/img/scene.png'
+import streamImagePath from '/img/stream.png'
+import recordImagePath from '/img/record.png'
 export interface ActionProps {
   id: string
   index: number
   iconPath: string
   label: string
-  key: string
   command: {
     type: string
     category: string
@@ -24,122 +26,159 @@ export interface ActionProps {
   }
 }
 
+const systemGroup = {
+  key: 'system',
+  slug: 'Sistema',
+  path: windowsImagePath,
+  actions: [
+    {
+      id: '',
+      index: -1,
+      iconPath: rocketImagePath,
+      label: 'Lançar uma aplicação',
+      command: {
+        type: 'application',
+        category: 'system',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: speakerImagePath,
+      label: 'Dispositivo de saída',
+      command: {
+        type: 'device-output',
+        category: 'system',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: musicPlayerImagePath,
+      label: 'Constrole de mídia',
+      command: {
+        type: 'media-control',
+        category: 'system',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: cameraImagePath,
+      label: 'Captura de tela',
+      command: {
+        type: 'screenshot',
+        category: 'system',
+        content: ''
+      }
+    }
+  ]
+}
+
+const discordGroup = {
+  key: 'discord',
+  slug: 'Discord',
+  path: discordImagePath,
+  actions: [
+    {
+      id: '',
+      index: -1,
+      iconPath: speakerMutedImagePath,
+      label: 'Silenciar/dessilenciar áudio',
+      command: {
+        type: 'output-mute',
+        category: 'discord',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: micMutedImagePath,
+      label: 'Silenciar/dessilenciar o microfone',
+      command: {
+        type: 'microphone-mute',
+        category: 'discord',
+        content: ''
+      }
+    }
+  ]
+}
+
+const obsStudioGroup = {
+  key: 'obs-studio',
+  slug: 'Obs Studio',
+  path: obsStudioImagePath,
+  actions: [
+    {
+      id: '',
+      index: -1,
+      iconPath: sceneImagePath,
+      label: 'Alternar cena',
+      command: {
+        type: 'scene',
+        category: 'obs-studio',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: streamImagePath,
+      label: 'Transmissão',
+      command: {
+        type: 'stream',
+        category: 'obs-studio',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: recordImagePath,
+      label: 'Gravação',
+      command: {
+        type: 'record',
+        category: 'obs-studio',
+        content: ''
+      }
+    }
+  ]
+}
+
+const astroSoftwareGroup = {
+  key: 'astro',
+  slug: 'Astro',
+  path: moonImagePath,
+  actions: [
+    {
+      id: '',
+      index: -1,
+      iconPath: folderImagePath,
+      label: 'Agrupar ações',
+      command: {
+        type: 'group',
+        category: 'astro-software',
+        content: ''
+      }
+    }
+  ]
+}
+
+const spotifyGroup = {
+  key: 'spotify',
+  slug: 'Spotify',
+  path: spotifyImagePath,
+  actions: []
+}
+
 export const data = [
-  {
-    key: 'system',
-    slug: 'Sistema',
-    path: windowsImagePath,
-    actions: [
-      {
-        id: '',
-        index: -1,
-        iconPath: rocketImagePath,
-        label: 'Lançar uma aplicação',
-        key: 'system',
-        command: {
-          type: 'system',
-          category: 'application',
-          content: ''
-        }
-      },
-      {
-        id: '',
-        index: -1,
-        iconPath: speakerImagePath,
-        label: 'Dispositivo de saída',
-        key: 'system',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      },
-      {
-        id: '',
-        index: -1,
-        iconPath: musicPlayerImagePath,
-        label: 'Constrole de mídia',
-        key: 'system',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      },
-      {
-        id: '',
-        index: -1,
-        iconPath: cameraImagePath,
-        label: 'Captura de tela',
-        key: 'system',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      }
-    ]
-  },
-  {
-    key: 'discord',
-    slug: 'Discord',
-    path: discordImagePath,
-    actions: [
-      {
-        id: '',
-        index: -1,
-        iconPath: speakerMutedImagePath,
-        label: 'Silenciar/dessilenciar áudio',
-        key: 'discord',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      },
-      {
-        id: '',
-        index: -1,
-        iconPath: micMutedImagePath,
-        label: 'Silenciar/dessilenciar o microfone',
-        key: 'discord',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      }
-    ]
-  },
-  {
-    key: 'spotify',
-    slug: 'Spotify',
-    path: spotifyImagePath,
-    actions: []
-  },
-  {
-    key: 'obs',
-    slug: 'Obs Studio',
-    path: obsStudioImagePath,
-    actions: []
-  },
-  {
-    key: 'astro',
-    slug: 'Astro',
-    path: moonImagePath,
-    actions: [
-      {
-        id: '',
-        index: -1,
-        iconPath: folderImagePath,
-        label: 'Criar grupo',
-        key: 'discord',
-        command: {
-          type: '',
-          category: '',
-          content: ''
-        }
-      }
-    ]
-  }
+  systemGroup,
+  discordGroup,
+  obsStudioGroup,
+  astroSoftwareGroup,
+  spotifyGroup
 ]
