@@ -9,11 +9,11 @@ interface ActionProps {
 }
 
 const Action: React.FC<ActionProps> = ({ data }) => {
-  const [{ isDragging }, dragRef] = useDrag(() => ({
+  const [{ isDragging }, dragRef] = useDrag({
     item: { data },
     type: 'ACTION',
     collect: (monitor) => ({ isDragging: monitor.isDragging() })
-  }))
+  })
 
   return (
     <Container ref={dragRef} isDragging={isDragging}>

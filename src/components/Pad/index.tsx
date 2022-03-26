@@ -8,21 +8,16 @@ interface PadProps {
   data: ActionDataProps
 }
 
-interface ItemProps {
-  data: ActionDataProps
-}
-
 const Pad: React.FC<PadProps> = ({ data }) => {
   const [padProprieties, setPadProperties] = useState(data)
 
-  const [, dropRef] = useDrop(() => ({
+  const [, dropRef] = useDrop({
     accept: 'ACTION',
-    drop(item: ItemProps, monitor) {
-      const padData = item.data
-      padData.id = '1213'
-      setPadProperties(padData)
+    drop({ data }: PadProps, monitor) {
+      data.id = '1213'
+      setPadProperties(data)
     }
-  }))
+  })
 
   return padProprieties.id !== '' ? (
     <_Pad>
