@@ -13,7 +13,6 @@ function createWindow() {
     frame: false,
     resizable: true,
     fullscreenable: true,
-    transparent: true,
     webPreferences: {
       preload: join(__dirname, 'preload.js')
     },
