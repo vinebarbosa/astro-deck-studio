@@ -1,17 +1,24 @@
 import React from 'react'
+import { useDrag } from 'react-dnd'
+import { ActionDataProps } from '../Drawer/drawerData'
 
 import { Container } from './styles'
 
 interface ActionProps {
-  icon: string
-  label: string
+  data: ActionDataProps
 }
 
-const Action: React.FC<ActionProps> = ({ icon, label }) => {
+const Action: React.FC<ActionProps> = ({ data }) => {
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { data },
+    type: 'ACTION',
+    collect: (monitor) => ({ isDragging: monitor.isDragging() })
+  })
+
   return (
-    <Container>
-      <img src={icon} alt="icone" />
-      <p>{label}</p>
+    <Container ref={dragRef} isDragging={isDragging}>
+      <img src={data.iconPath} alt="icone" />
+      <p>{data.label}</p>
     </Container>
   )
 }

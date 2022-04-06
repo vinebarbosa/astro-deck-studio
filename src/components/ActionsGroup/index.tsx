@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import Action from '../Action/intex'
 
 import ArrowButton from '../ArrowButton'
-import { ActionProps } from '../Drawer/drawerData'
+import { ActionDataProps } from '../Drawer/drawerData'
 
 import { Container, Icon, Label } from './styles'
 interface ActionsGroupProps {
   iconPath: string
   label: string
-  actions: ActionProps[]
+  actions: ActionDataProps[]
 }
 
 const ActionsGroup: React.FC<ActionsGroupProps> = ({
@@ -30,9 +30,7 @@ const ActionsGroup: React.FC<ActionsGroupProps> = ({
         <Label text={label} />
       </Container>
       {isDrawing &&
-        actions.map((action, index) => (
-          <Action key={index} icon={action.iconPath} label={action.label} />
-        ))}
+        actions.map((action, index) => <Action key={index} data={action} />)}
     </>
   )
 }

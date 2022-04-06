@@ -30,10 +30,30 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${theme.colors.background};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   button {
     cursor: pointer;
+  }
+
+  .settings-modal {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: ${({ theme }) => theme.colors.primary};
+    padding: 3rem;
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
+  }
+
+  .settings-modal-overlay {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `
