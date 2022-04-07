@@ -22,7 +22,15 @@ const Pad: React.FC<PadProps> = ({ data }) => {
 
   return padProprieties.id !== '' ? (
     <_Pad>
-      <img src={padProprieties.iconPath} alt="" />
+      <img
+        className={
+          padProprieties.iconPath === padProprieties.alternativeIconPath
+            ? 'padding-on'
+            : ''
+        }
+        src={padProprieties.iconPath}
+        alt=""
+      />
     </_Pad>
   ) : (
     <EmptyPad ref={dropRef} />

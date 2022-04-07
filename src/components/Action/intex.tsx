@@ -17,7 +17,7 @@ const Action: React.FC<ActionProps> = ({ data }) => {
 
   return (
     <Container ref={dragRef} isDragging={isDragging}>
-      <img src={data.iconPath} alt="icone" />
+      <img src={data.alternativeIconPath} alt="icone" />
       <p>{data.label}</p>
     </Container>
   )

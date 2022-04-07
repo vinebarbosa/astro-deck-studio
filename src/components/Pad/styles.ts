@@ -23,6 +23,9 @@ export const _Pad = styled.div`
   img {
     width: 100%;
     height: 100%;
-    padding: 5px;
+
+    &.padding-on {
+      padding: 8px;
+    }
   }
 `
