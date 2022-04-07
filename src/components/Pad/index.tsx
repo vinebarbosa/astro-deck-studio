@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDrop } from 'react-dnd'
+import { v4 as uuid } from 'uuid'
 
 import { EmptyPad, _Pad } from './styles'
 import { ActionDataProps } from '../../components/Drawer/drawerData'
@@ -14,7 +15,7 @@ const Pad: React.FC<PadProps> = ({ data }) => {
   const [, dropRef] = useDrop({
     accept: 'ACTION',
     drop({ data }: PadProps, monitor) {
-      data.id = '1213'
+      data.id = uuid()
       setPadProperties(data)
     }
   })
