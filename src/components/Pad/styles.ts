@@ -23,6 +23,8 @@ export const _Pad = styled.div`
   img {
     width: 100%;
     height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
 
     &.padding-on {
       padding: 8px;
