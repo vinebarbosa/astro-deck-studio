@@ -211,6 +211,25 @@ app.put('/api/button', (req, res) => {
   res.send(data[index])
 })
 
+app.delete('/api/button/:id', (req, res) => {
+  const { id } = req.params
+  const button = data.find((button) => button.id === id)
+
+  if (button) {
+    button.id = ''
+    button.iconPath = ''
+    button.alternativeIconPath = ''
+    button.label = ''
+    button.command = {
+      type: '',
+      category: '',
+      content: ''
+    }
+  }
+
+  return res.send(button)
+})
+
 app.listen(4000, () => {
   console.log('O pai tá on na porta 4000')
 })

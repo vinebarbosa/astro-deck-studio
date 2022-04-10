@@ -50,6 +50,12 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
     setPadProperties(response.data)
   }
 
+  async function handleDeletePad() {
+    const { data } = await api.delete(`button/${padProprieties.id}`)
+    setPadProperties(data)
+    setPad({} as PadProps)
+  }
+
   const [, dropRef] = useDrop({
     accept: 'ACTION',
     drop({ data }: Props) {
@@ -77,7 +83,7 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
       >
         <SettingsIcon />
         <VerticalSeparationLine />
-        <DeleteIcon />
+        <DeleteIcon onClick={handleDeletePad} />
       </SettingsAndDeleteContainer>
     </ConfigurablePad>
   ) : (
