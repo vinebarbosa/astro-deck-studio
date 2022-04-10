@@ -15,12 +15,12 @@ import { PadProps } from '../../interfaces/padProps'
 
 import { usePads } from '../../hooks/usePads'
 import { api } from '../../services/api'
-interface PadDataProps {
+interface Props {
   data: PadProps
   index: number
 }
 
-export const Pad: React.FC<PadDataProps> = ({ data, index }) => {
+export const Pad: React.FC<Props> = ({ data, index }) => {
   const [padProprieties, setPadProperties] = useState({} as PadProps)
 
   const { handleSelectPad, selectedPad, hasPadSelected } = usePads()
@@ -38,14 +38,14 @@ export const Pad: React.FC<PadDataProps> = ({ data, index }) => {
 
   const [, dropRef] = useDrop({
     accept: 'ACTION',
-    drop({ data }: PadDataProps) {
+    drop({ data }: Props) {
       handleUpdatePad(data)
     }
   })
 
   return padProprieties.id !== '' ? (
     <ConfigurablePad
-      onClick={() => handleSelectPad(padProprieties)}
+      onClick={() => setPad(padProprieties)}
       isSelected={padProprieties.id === selectedPad.id}
       hasPadSelected={hasPadSelected}
     >

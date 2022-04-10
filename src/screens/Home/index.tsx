@@ -30,7 +30,7 @@ SettingsModal.setAppElement('#root')
 const Home: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [buttonsData, setButtonsData] = useState(data)
-  const { handleSelectPad } = usePads()
+  const { setPad } = usePads()
 
   function handleOpenSettingsModal() {
     setIsOpen(true)
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
   function handleOutsideClick(event: SyntheticEvent) {
     if (event.target === event.currentTarget) {
-      handleSelectPad({} as PadProps)
+      setPad({} as PadProps)
     }
   }
 

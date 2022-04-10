@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import { PadProps } from '../interfaces/padProps'
 
 interface PadContextData {
-  handleSelectPad: (pad: PadProps) => void
+  setPad: (pad: PadProps) => void
   selectedPad: PadProps
   hasPadSelected: boolean
 }
@@ -13,10 +13,8 @@ export const PadsProvider: React.FC = ({ children }) => {
   const [selectedPad, setSelectedPad] = useState({} as PadProps)
   const [hasPadSelected, setHasPadSelected] = useState(false)
 
-  function handleSelectPad(pad: PadProps) {
-    if (pad.id !== selectedPad.id) {
-      setSelectedPad(pad)
-    }
+  function setPad(pad: PadProps) {
+    setSelectedPad(pad)
   }
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export const PadsProvider: React.FC = ({ children }) => {
   return (
     <PadsContext.Provider
       value={{
-        handleSelectPad: handleSelectPad,
+        setPad,
         selectedPad,
         hasPadSelected
       }}
