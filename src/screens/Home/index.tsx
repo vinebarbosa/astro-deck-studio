@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import SettingsModal from 'react-modal'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -22,12 +22,15 @@ import {
 import { api } from '../../services/api'
 
 import { data } from './data'
+import { usePads } from '../../hooks/usePads'
+import { ActionDataProps } from '../../components/Drawer/drawerData'
 
 SettingsModal.setAppElement('#root')
 
 const Home: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [buttonsData, setButtonsData] = useState(data)
+  const { handleSelectPad } = usePads()
 
   function handleOpenSettingsModal() {
     setIsOpen(true)
@@ -35,6 +38,12 @@ const Home: React.FC = () => {
 
   function handleCloseSettingsModal() {
     setIsOpen(false)
+  }
+
+  function handleOutsideClick(event: SyntheticEvent) {
+    if (event.target === event.currentTarget) {
+      handleSelectPad({} as ActionDataProps)
+    }
   }
 
   useEffect(() => {
@@ -52,8 +61,8 @@ const Home: React.FC = () => {
           <Title>Ações</Title>
           <Drawer />
         </SideBar>
-        <PadsArea>
-          <TopArea>
+        <PadsArea onClick={handleOutsideClick}>
+          <TopArea onClick={handleOutsideClick}>
             <ProfileSelectArea>
               <Text>Perfil Padrão</Text>
               <ArrowIcon />
@@ -63,7 +72,8 @@ const Home: React.FC = () => {
               <SettingsIcon onClick={handleOpenSettingsModal} />
             </SettingsAndNotificationsContainer>
           </TopArea>
-          <Pads>
+
+          <Pads onClick={handleOutsideClick}>
             {buttonsData.map((item) => (
               <Pad key={item.index} data={item} index={item.index} />
             ))}

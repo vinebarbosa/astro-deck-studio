@@ -84,7 +84,7 @@ export const SettingsAndNotificationsContainer = styled.div`
 
 export const SettingsIcon = styled(MdSettings)`
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: 24px;
+  font-size: 28px;
   transition: color 0.2s ease-in-out;
 
   &:hover {
@@ -93,7 +93,7 @@ export const SettingsIcon = styled(MdSettings)`
 `
 export const NotificationsIcon = styled(MdNotifications)`
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: 24px;
+  font-size: 28px;
   margin-right: 8px;
 
   transition: color 0.2s ease-in-out;

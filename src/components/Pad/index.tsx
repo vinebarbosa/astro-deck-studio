@@ -2,9 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { v4 as uuid } from 'uuid'
 
-import { EmptyPad, _Pad } from './styles'
+import {
+  ConfigurablePad,
+  DeleteIcon,
+  EmptyPad,
+  SettingsAndDeleteContainer,
+  SettingsIcon,
+  VerticalSeparationLine
+} from './styles'
+
 import { ActionDataProps } from '../../components/Drawer/drawerData'
 
+import { usePads } from '../../hooks/usePads'
 import { api } from '../../services/api'
 interface PadProps {
   data: ActionDataProps
@@ -13,9 +22,8 @@ interface PadProps {
 
 const Pad: React.FC<PadProps> = ({ data, index }) => {
   const [padProprieties, setPadProperties] = useState({} as ActionDataProps)
-  // let padProprieties = data
 
-  console.log(data)
+  const { handleSelectPad, selectedPad, hasPadSelected } = usePads()
 
   useEffect(() => {
     setPadProperties(data)
@@ -36,7 +44,11 @@ const Pad: React.FC<PadProps> = ({ data, index }) => {
   })
 
   return padProprieties.id !== '' ? (
-    <_Pad>
+    <ConfigurablePad
+      onClick={() => handleSelectPad(padProprieties)}
+      isSelected={padProprieties.id === selectedPad.id}
+      hasPadSelected={hasPadSelected}
+    >
       <img
         className={
           padProprieties.iconPath === padProprieties.alternativeIconPath
@@ -44,11 +56,18 @@ const Pad: React.FC<PadProps> = ({ data, index }) => {
             : ''
         }
         src={padProprieties.iconPath}
-        alt=""
+        alt="icon"
       />
-    </_Pad>
+      <SettingsAndDeleteContainer
+        isActive={selectedPad.id === padProprieties.id}
+      >
+        <SettingsIcon />
+        <VerticalSeparationLine />
+        <DeleteIcon />
+      </SettingsAndDeleteContainer>
+    </ConfigurablePad>
   ) : (
-    <EmptyPad ref={dropRef} />
+    <EmptyPad ref={dropRef} hasPadSelected={hasPadSelected} />
   )
 }
 
