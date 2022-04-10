@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { v4 as uuid } from 'uuid'
 import { PadConfigurationModal } from '../PadConfigurationModal'
@@ -78,7 +78,7 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
     openModal()
   }
 
-  function handleConfigurablePadClick(event: SyntheticEvent) {
+  function handleConfigurablePadClick() {
     setPad(padProprieties)
   }
 
