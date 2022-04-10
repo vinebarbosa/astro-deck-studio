@@ -23,11 +23,25 @@ interface Props {
 export const Pad: React.FC<Props> = ({ data, index }) => {
   const [padProprieties, setPadProperties] = useState({} as PadProps)
 
-  const { handleSelectPad, selectedPad, hasPadSelected } = usePads()
+  const { setPad, selectedPad, hasPadSelected } = usePads()
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      setPad({} as PadProps)
+    }
+  }
 
   useEffect(() => {
     setPadProperties(data)
   }, [data])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   async function handleUpdatePad(data: PadProps) {
     data.id = uuid()
