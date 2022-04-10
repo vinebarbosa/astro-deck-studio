@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
-import SettingsModal from 'react-modal'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Menu } from '../../components/Menu'
@@ -25,20 +24,9 @@ import { data } from './data'
 import { usePads } from '../../hooks/usePads'
 import { PadProps } from '../../interfaces/padProps'
 
-SettingsModal.setAppElement('#root')
-
 const Home: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [buttonsData, setButtonsData] = useState(data)
   const { setPad } = usePads()
-
-  function handleOpenSettingsModal() {
-    setIsOpen(true)
-  }
-
-  function handleCloseSettingsModal() {
-    setIsOpen(false)
-  }
 
   function handleOutsideClick(event: SyntheticEvent) {
     if (event.target === event.currentTarget) {
@@ -56,7 +44,7 @@ const Home: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Container applyOverlayBlur={isOpen}>
+      <Container>
         <SideBar>
           <Title>Ações</Title>
           <Menu />
@@ -69,24 +57,15 @@ const Home: React.FC = () => {
             </ProfileSelectArea>
             <SettingsAndNotificationsContainer>
               <NotificationsIcon />
-              <SettingsIcon onClick={handleOpenSettingsModal} />
+              <SettingsIcon />
             </SettingsAndNotificationsContainer>
           </TopArea>
-
           <Pads onClick={handleOutsideClick}>
             {buttonsData.map((item) => (
               <Pad key={item.index} data={item} index={item.index} />
             ))}
           </Pads>
         </PadsArea>
-        <SettingsModal
-          isOpen={isOpen}
-          onRequestClose={handleCloseSettingsModal}
-          className="settings-modal"
-          overlayClassName="settings-modal-overlay"
-        >
-          <Title>Configurações do Botão</Title>
-        </SettingsModal>
       </Container>
     </DndProvider>
   )

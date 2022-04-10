@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { useDrop } from 'react-dnd'
 import { v4 as uuid } from 'uuid'
+import { PadConfigurationModal } from '../PadConfigurationModal'
 
 import {
   ConfigurablePad,
@@ -23,7 +24,8 @@ interface Props {
 export const Pad: React.FC<Props> = ({ data, index }) => {
   const [padProprieties, setPadProperties] = useState({} as PadProps)
 
-  const { setPad, selectedPad, hasPadSelected } = usePads()
+  const { setPad, selectedPad, hasPadSelected, resetPad } = usePads()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
@@ -63,29 +65,54 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
     }
   })
 
+  function openModal() {
+    setIsModalOpen(true)
+  }
+
+  function closeModal() {
+    setIsModalOpen(false)
+  }
+
+  function handleConfigurationButtonClick() {
+    resetPad()
+    openModal()
+  }
+
+  function handleConfigurablePadClick(event: SyntheticEvent) {
+    setPad(padProprieties)
+  }
+
   return padProprieties.id !== '' ? (
-    <ConfigurablePad
-      onClick={() => setPad(padProprieties)}
-      isSelected={padProprieties.id === selectedPad.id}
-      hasPadSelected={hasPadSelected}
-    >
-      <img
-        className={
-          padProprieties.iconPath === padProprieties.alternativeIconPath
-            ? 'padding-on'
-            : ''
-        }
-        src={padProprieties.iconPath}
-        alt="icon"
-      />
-      <SettingsAndDeleteContainer
-        isActive={selectedPad.id === padProprieties.id}
+    <>
+      <ConfigurablePad
+        isSelected={padProprieties.id === selectedPad.id}
+        hasPadSelected={hasPadSelected}
       >
-        <SettingsIcon />
-        <VerticalSeparationLine />
-        <DeleteIcon onClick={handleDeletePad} />
-      </SettingsAndDeleteContainer>
-    </ConfigurablePad>
+        <img
+          onClick={handleConfigurablePadClick}
+          className={
+            padProprieties.iconPath === padProprieties.alternativeIconPath
+              ? 'padding-on'
+              : ''
+          }
+          src={padProprieties.iconPath}
+          alt="icon"
+        />
+        <SettingsAndDeleteContainer
+          isActive={selectedPad.id === padProprieties.id}
+        >
+          <SettingsIcon onClick={handleConfigurationButtonClick} />
+          <VerticalSeparationLine />
+          <DeleteIcon onClick={handleDeletePad} />
+        </SettingsAndDeleteContainer>
+      </ConfigurablePad>
+      <PadConfigurationModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        pad={padProprieties}
+        setPadProperties={setPadProperties}
+      />
+    </>
   ) : (
     <EmptyPad ref={dropRef} hasPadSelected={hasPadSelected} />
   )

@@ -1,23 +1,14 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { MdSettings, MdNotifications } from 'react-icons/md'
 import { FiChevronDown } from 'react-icons/fi'
 
-interface ContainerProps {
-  applyOverlayBlur: boolean
-}
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   height: calc(100vh - 20px);
   background-color: ${({ theme }) => theme.colors.background};
   transition: filter 200ms ease-in-out;
-
-  ${({ applyOverlayBlur }) =>
-    applyOverlayBlur &&
-    css`
-      filter: blur(2px);
-    `}
 `
 
 export const SideBar = styled.div`
