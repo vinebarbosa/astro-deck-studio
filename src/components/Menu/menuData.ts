@@ -14,18 +14,6 @@ import folderImagePath from '/img/folder.png'
 import sceneImagePath from '/img/scene.png'
 import streamImagePath from '/img/stream.png'
 import recordImagePath from '/img/record.png'
-export interface ActionDataProps {
-  id: string
-  index: number
-  iconPath: string
-  alternativeIconPath: string
-  label: string
-  command: {
-    type: string
-    category: string
-    content: any
-  }
-}
 
 const systemGroup = {
   key: 'system',

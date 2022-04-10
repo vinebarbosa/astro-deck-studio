@@ -1,14 +1,14 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
-import { ActionDataProps } from '../Drawer/drawerData'
+import { PadProps } from '../../interfaces/padProps'
 
 import { Container } from './styles'
 
 interface ActionProps {
-  data: ActionDataProps
+  data: PadProps
 }
 
-const Action: React.FC<ActionProps> = ({ data }) => {
+export const MenuOption: React.FC<ActionProps> = ({ data }) => {
   const [{ isDragging }, dragRef] = useDrag({
     item: { data },
     type: 'ACTION',
@@ -22,5 +22,3 @@ const Action: React.FC<ActionProps> = ({ data }) => {
     </Container>
   )
 }
-
-export default Action

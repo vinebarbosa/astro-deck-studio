@@ -2,8 +2,8 @@ import React, { SyntheticEvent, useEffect, useState } from 'react'
 import SettingsModal from 'react-modal'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import Drawer from '../../components/Drawer'
-import Pad from '../../components/Pad'
+import { Menu } from '../../components/Menu'
+import { Pad } from '../../components/Pad'
 import {
   Container,
   SideBar,
@@ -23,7 +23,7 @@ import { api } from '../../services/api'
 
 import { data } from './data'
 import { usePads } from '../../hooks/usePads'
-import { ActionDataProps } from '../../components/Drawer/drawerData'
+import { PadProps } from '../../interfaces/padProps'
 
 SettingsModal.setAppElement('#root')
 
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
   function handleOutsideClick(event: SyntheticEvent) {
     if (event.target === event.currentTarget) {
-      handleSelectPad({} as ActionDataProps)
+      handleSelectPad({} as PadProps)
     }
   }
 
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
       <Container applyOverlayBlur={isOpen}>
         <SideBar>
           <Title>Ações</Title>
-          <Drawer />
+          <Menu />
         </SideBar>
         <PadsArea onClick={handleOutsideClick}>
           <TopArea onClick={handleOutsideClick}>

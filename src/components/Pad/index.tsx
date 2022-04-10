@@ -11,17 +11,17 @@ import {
   VerticalSeparationLine
 } from './styles'
 
-import { ActionDataProps } from '../../components/Drawer/drawerData'
+import { PadProps } from '../../interfaces/padProps'
 
 import { usePads } from '../../hooks/usePads'
 import { api } from '../../services/api'
-interface PadProps {
-  data: ActionDataProps
+interface PadDataProps {
+  data: PadProps
   index: number
 }
 
-const Pad: React.FC<PadProps> = ({ data, index }) => {
-  const [padProprieties, setPadProperties] = useState({} as ActionDataProps)
+export const Pad: React.FC<PadDataProps> = ({ data, index }) => {
+  const [padProprieties, setPadProperties] = useState({} as PadProps)
 
   const { handleSelectPad, selectedPad, hasPadSelected } = usePads()
 
@@ -29,7 +29,7 @@ const Pad: React.FC<PadProps> = ({ data, index }) => {
     setPadProperties(data)
   }, [data])
 
-  async function handleUpdatePad(data: ActionDataProps) {
+  async function handleUpdatePad(data: PadProps) {
     data.id = uuid()
     data.index = index
     const response = await api.put('button', data)
@@ -38,7 +38,7 @@ const Pad: React.FC<PadProps> = ({ data, index }) => {
 
   const [, dropRef] = useDrop({
     accept: 'ACTION',
-    drop({ data }: PadProps) {
+    drop({ data }: PadDataProps) {
       handleUpdatePad(data)
     }
   })
@@ -70,5 +70,3 @@ const Pad: React.FC<PadProps> = ({ data, index }) => {
     <EmptyPad ref={dropRef} hasPadSelected={hasPadSelected} />
   )
 }
-
-export default Pad

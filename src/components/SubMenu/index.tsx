@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
-import Action from '../Action/intex'
+import { MenuOption } from '../MenuOption'
 
-import ArrowButton from '../ArrowButton'
-import { ActionDataProps } from '../Drawer/drawerData'
+import { ArrowButton } from '../ArrowButton'
+import { PadProps } from '../../interfaces/padProps'
 
 import { Container, Icon, Label } from './styles'
 interface ActionsGroupProps {
   iconPath: string
   label: string
-  actions: ActionDataProps[]
+  actions: PadProps[]
 }
 
-const ActionsGroup: React.FC<ActionsGroupProps> = ({
-  iconPath,
-  label,
-  actions
-}) => {
+const SubMenu: React.FC<ActionsGroupProps> = ({ iconPath, label, actions }) => {
   const [isDrawing, setIsDrawing] = useState(false)
 
   function handleUserClick() {
@@ -30,9 +26,11 @@ const ActionsGroup: React.FC<ActionsGroupProps> = ({
         <Label text={label} />
       </Container>
       {isDrawing &&
-        actions.map((action, index) => <Action key={index} data={action} />)}
+        actions.map((action, index) => (
+          <MenuOption key={index} data={action} />
+        ))}
     </>
   )
 }
 
-export default ActionsGroup
+export default SubMenu
