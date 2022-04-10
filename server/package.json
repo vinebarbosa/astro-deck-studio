@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"yarn tsc --watch\" \"nodemon dist/server.js\""
+    "dev": "concurrently \"yarn tsc --watch\" \"nodemon dist/server.js\"",
+    "serve": "pm2 start dist/server.js --watch "
   },
   "dependencies": {
     "cors": "^2.8.5",
