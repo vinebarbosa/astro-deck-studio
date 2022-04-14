@@ -46,8 +46,8 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
   }, [])
 
   async function handleUpdatePad(data: PadProps) {
-    data.id = uuid()
-    data.index = index
+    if (!data.id) data.id = uuid()
+    if (data.index === -1) data.index = index
     const response = await api.put('button', data)
     setPadProperties(response.data)
   }
@@ -110,7 +110,7 @@ export const Pad: React.FC<Props> = ({ data, index }) => {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         pad={padProprieties}
-        setPadProperties={setPadProperties}
+        setPadProperties={handleUpdatePad}
       />
     </>
   ) : (

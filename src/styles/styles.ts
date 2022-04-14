@@ -37,11 +37,16 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  .settings-modal-overlay {
+    background: transparent;
+  }
+
   .settings-modal {
     position: absolute;
     width: 100%;
-    height: 101%;
+    height: calc(100% - 20px);
     background-color: ${({ theme }) => theme.colors.primary};
     padding: 2.5rem;
+    bottom: 0;
   }
 `

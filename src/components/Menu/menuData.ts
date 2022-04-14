@@ -14,6 +14,7 @@ import folderImagePath from '/img/folder.png'
 import sceneImagePath from '/img/scene.png'
 import streamImagePath from '/img/stream.png'
 import recordImagePath from '/img/record.png'
+import webImagePath from '/img/web.png'
 
 const systemGroup = {
   key: 'system',
@@ -28,6 +29,18 @@ const systemGroup = {
       label: 'Lançar uma aplicação',
       command: {
         type: 'application',
+        category: 'system',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
+      iconPath: webImagePath,
+      alternativeIconPath: webImagePath,
+      label: 'Abrir um site',
+      command: {
+        type: 'web',
         category: 'system',
         content: ''
       }
