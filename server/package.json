@@ -5,11 +5,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn tsc --watch\" \"nodemon dist/server.js\"",
-    "serve": "pm2 start dist/server.js --watch "
+    "start": "pm2 start dist/server.js --watch",
+    "stop": "pm2 stop server",
+    "status": "pm2 list"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "open": "^8.4.0",
     "pm2": "^5.2.0"
   },
   "devDependencies": {

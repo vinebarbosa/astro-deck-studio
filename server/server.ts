@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import open from 'open'
 
 const app = express()
 
@@ -228,6 +229,12 @@ app.delete('/api/button/:id', (req, res) => {
   }
 
   return res.send(button)
+})
+
+app.post('/api/open/:url', (req, res) => {
+  const { url } = req.params
+  open(url)
+  res.sendStatus(200)
 })
 
 app.listen(4000, () => {
