@@ -1,13 +1,16 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+interface ActionProps {
+  isDragging: boolean
+}
+
+export const Container = styled.div<ActionProps>`
   display: flex;
   flex: 1;
   padding: 10px 40px;
   align-items: center;
   border-radius: 5px;
-
-  user-select: none;
+  cursor: grab;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -17,8 +20,6 @@ export const Container = styled.div`
     height: 24px;
     min-width: 24px;
     margin-right: 10px;
-    -webkit-app-region: no-drag;
-    pointer-events: none;
   }
 
   p {
@@ -26,4 +27,10 @@ export const Container = styled.div`
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: 14px;
   }
+
+  ${({ isDragging }) =>
+    isDragging &&
+    css`
+      cursor: grabbing;
+    `}
 `

@@ -30,10 +30,23 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${theme.colors.background};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   button {
     cursor: pointer;
+  }
+
+  .settings-modal-overlay {
+    background: transparent;
+  }
+
+  .settings-modal {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 20px);
+    background-color: ${({ theme }) => theme.colors.primary};
+    padding: 2.5rem;
+    bottom: 0;
   }
 `

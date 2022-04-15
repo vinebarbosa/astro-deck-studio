@@ -1,13 +1,13 @@
 import React from 'react'
-import ActionsGroup from '../../components/ActionsGroup'
+import SubMenu from '../../components/SubMenu'
 import { Container } from './styles'
-import { data } from './drawerData'
+import { data } from './menuData'
 
-const Drawer: React.FC = () => {
+export const Menu: React.FC = () => {
   return (
     <Container>
       {data.map((actionGroup, index) => (
-        <ActionsGroup
+        <SubMenu
           key={index}
           iconPath={actionGroup.path}
           label={actionGroup.slug}
@@ -17,5 +17,3 @@ const Drawer: React.FC = () => {
     </Container>
   )
 }
-
-export default Drawer

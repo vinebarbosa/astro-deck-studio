@@ -6,8 +6,6 @@ interface ArrowButtonProps {
   select?: boolean
 }
 
-const ArrowButton: React.FC<ArrowButtonProps> = ({ select }) => {
+export const ArrowButton: React.FC<ArrowButtonProps> = ({ select }) => {
   return select ? <UpIcon /> : <DownIcon />
 }
-
-export default ArrowButton

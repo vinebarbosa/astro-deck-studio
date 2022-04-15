@@ -14,17 +14,7 @@ import folderImagePath from '/img/folder.png'
 import sceneImagePath from '/img/scene.png'
 import streamImagePath from '/img/stream.png'
 import recordImagePath from '/img/record.png'
-export interface ActionProps {
-  id: string
-  index: number
-  iconPath: string
-  label: string
-  command: {
-    type: string
-    category: string
-    content: any
-  }
-}
+import webImagePath from '/img/web.png'
 
 const systemGroup = {
   key: 'system',
@@ -35,6 +25,7 @@ const systemGroup = {
       id: '',
       index: -1,
       iconPath: rocketImagePath,
+      alternativeIconPath: rocketImagePath,
       label: 'Lançar uma aplicação',
       command: {
         type: 'application',
@@ -45,7 +36,20 @@ const systemGroup = {
     {
       id: '',
       index: -1,
+      iconPath: webImagePath,
+      alternativeIconPath: webImagePath,
+      label: 'Abrir um site',
+      command: {
+        type: 'web',
+        category: 'system',
+        content: ''
+      }
+    },
+    {
+      id: '',
+      index: -1,
       iconPath: speakerImagePath,
+      alternativeIconPath: speakerImagePath,
       label: 'Dispositivo de saída',
       command: {
         type: 'device-output',
@@ -57,6 +61,7 @@ const systemGroup = {
       id: '',
       index: -1,
       iconPath: musicPlayerImagePath,
+      alternativeIconPath: musicPlayerImagePath,
       label: 'Constrole de mídia',
       command: {
         type: 'media-control',
@@ -68,6 +73,7 @@ const systemGroup = {
       id: '',
       index: -1,
       iconPath: cameraImagePath,
+      alternativeIconPath: cameraImagePath,
       label: 'Captura de tela',
       command: {
         type: 'screenshot',
@@ -87,6 +93,7 @@ const discordGroup = {
       id: '',
       index: -1,
       iconPath: speakerMutedImagePath,
+      alternativeIconPath: speakerMutedImagePath,
       label: 'Silenciar/dessilenciar áudio',
       command: {
         type: 'output-mute',
@@ -98,6 +105,7 @@ const discordGroup = {
       id: '',
       index: -1,
       iconPath: micMutedImagePath,
+      alternativeIconPath: micMutedImagePath,
       label: 'Silenciar/dessilenciar o microfone',
       command: {
         type: 'microphone-mute',
@@ -117,6 +125,7 @@ const obsStudioGroup = {
       id: '',
       index: -1,
       iconPath: sceneImagePath,
+      alternativeIconPath: sceneImagePath,
       label: 'Alternar cena',
       command: {
         type: 'scene',
@@ -128,6 +137,7 @@ const obsStudioGroup = {
       id: '',
       index: -1,
       iconPath: streamImagePath,
+      alternativeIconPath: streamImagePath,
       label: 'Transmissão',
       command: {
         type: 'stream',
@@ -139,6 +149,7 @@ const obsStudioGroup = {
       id: '',
       index: -1,
       iconPath: recordImagePath,
+      alternativeIconPath: recordImagePath,
       label: 'Gravação',
       command: {
         type: 'record',
@@ -158,6 +169,7 @@ const astroSoftwareGroup = {
       id: '',
       index: -1,
       iconPath: folderImagePath,
+      alternativeIconPath: folderImagePath,
       label: 'Agrupar ações',
       command: {
         type: 'group',
